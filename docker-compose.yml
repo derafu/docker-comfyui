@@ -1,0 +1,19 @@
+services:
+  comfyui:
+    build: .
+    image: comfyui:latest
+    container_name: comfyui
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ./data/input:/opt/comfyui/input
+      - ./data/models:/opt/comfyui/models
+      - ./data/output:/opt/comfyui/output
+    restart: unless-stopped

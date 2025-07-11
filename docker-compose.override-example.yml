@@ -1,0 +1,4 @@
+services:
+  comfyui:
+    ports:
+      - "8188:8188"
