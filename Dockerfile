@@ -1,8 +1,8 @@
 # ComfyUI Docker Image
 # This Dockerfile creates a containerized environment for ComfyUI, a powerful node-based UI for Stable Diffusion.
-# Based on NVIDIA CUDA 12.8.0 for GPU acceleration support.
+# Based on NVIDIA CUDA 13.0 for GPU acceleration support.
 
-FROM nvidia/cuda:12.8.0-base-ubuntu22.04
+FROM nvidia/cuda:13.0.3-base-ubuntu22.04
 
 # Set environment variables for non-interactive installation and Python version.
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -60,9 +60,9 @@ RUN ln -sf /usr/local/bin/python3.12 /usr/bin/python3 && \
 # This installs the core ComfyUI application with GPU acceleration.
 RUN git clone https://github.com/comfyanonymous/ComfyUI . && \
     pip install --upgrade pip && \
-    pip install --no-cache-dir torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu128 && \
+    pip install --no-cache-dir torch==2.11.0+cu130 torchvision==0.26.0+cu130 torchaudio==2.11.0+cu130 --extra-index-url https://download.pytorch.org/whl/cu130 && \
     pip install --no-cache-dir -r requirements.txt && \
-    pip install xformers!=0.0.18 -f https://download.pytorch.org/whl/cu128
+    pip install --no-cache-dir xformers==0.0.35 -f https://download.pytorch.org/whl/cu130
 
 # Install ComfyUI Manager - a plugin for managing models and custom nodes.
 # This provides a user-friendly interface for downloading and managing models.
@@ -86,7 +86,7 @@ RUN cd /opt/comfyui/custom_nodes && \
 # Replace CPU-only ONNX Runtime with GPU-accelerated version.
 # This ensures DWPose models use GPU acceleration instead of CPU for better performance.
 RUN pip3.12 uninstall -y onnxruntime && \
-    pip3.12 install onnxruntime-gpu
+    pip3.12 install onnxruntime-gpu==1.28.0
 
 # Note: Model downloads should be handled by the host system.
 # The following commented section shows how to download a default model.
