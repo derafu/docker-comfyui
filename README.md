@@ -6,7 +6,7 @@ A containerized version of ComfyUI, a powerful node-based interface for Stable D
 
 ComfyUI is a powerful and flexible interface for Stable Diffusion that uses a node-based workflow system. This Docker container includes:
 
-- **GPU Acceleration**: Built on NVIDIA CUDA 12.8.0 for optimal performance.
+- **GPU Acceleration**: Built on NVIDIA CUDA 13.0 for optimal performance.
 - **Pre-installed Custom Nodes**: ComfyUI Manager, X-Flux, and ControlNet Auxiliary nodes.
 - **Optimized Python Environment**: Python 3.12 with all necessary dependencies.
 - **Ready-to-use**: No additional setup required after building.
@@ -20,7 +20,7 @@ ComfyUI is a powerful and flexible interface for Stable Diffusion that uses a no
 ## Prerequisites
 
 - Docker and Docker Compose installed.
-- NVIDIA GPU with CUDA 12.8+ compatibility, tested with NVIDIA GeForce RTX 5090.
+- NVIDIA GPU with CUDA 13.0+ compatibility, tested with NVIDIA GeForce RTX 5090.
 - At least 16GB of available RAM.
 - Recommended to have at least 20GB+ of free disk space for models.
 
